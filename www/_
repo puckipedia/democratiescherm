@@ -22,7 +22,7 @@ module = {
 				}
 				if(data.type == "widget") {
 					module._.countn += data.width;
-					if(module._.countn > 12) {
+					if(module._.countn > 11) {
 						module._.countn = 0;
 						module._.count++;
 						$(".cont2").append("<div class='row-fluid count"+module._.count+"'></div>");
@@ -41,8 +41,9 @@ module = {
 		login: function(user,pass) {
 			if(module._.hash == "") {
 				$.getJSON("/login/"+module._.currentModule+".js?user="+user+"&pass="+md5(pass)).success(function(data) {
-					if(module._.hash != false) {
+					if(data != false) {
 						module._.hash = data;
+						module._.load("success.js");
 					}
 				});
 			}

@@ -7,7 +7,7 @@ function clientCode() {
 			module._.login($("#login_name", module.base).val(),$("#login_pass", module.base).val());
 		},
 		render:function(a) {
-			return '<input type="text" id="login_name" name="username"/><input type="password" id="login_pass" name="password"/><button onclick="module.submit()">Login</button>';
+			return '<input type="text" id="login_name" name="username" placeholder="username"/><input type="password" id="login_pass" name="password" placeholder="password"/><button class="btn pull-right btn-success" onclick="module.submit()">Login</button>';
 		},
 		type: "client",
 		name: "login",
