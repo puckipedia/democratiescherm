@@ -1,0 +1,50 @@
+var module = {"_": {currentModule:""}};
+module = {
+	"_": {
+		count: 0,
+		countn: 0,
+		currentModule: "",
+		hash: "",
+		"load": function(mdule) {
+			$.getJSON("/module/"+mdule).success(function(data) {
+				console.log(data);
+				module._.currentModule = data.name;
+				eval('('+data.init+')')();
+				for(var i in data) {
+					if(data[i].indexOf("function") == 0) {
+						module[i] = eval("("+data[i]+")");
+					}else {
+						module[i] = data[i];
+					}
+					console.log(i);
+				}
+				if(data.type == "widget") {
+					module._.countn += data.width;
+					if(module._.countn > 12) {
+						module._.countn = 0;
+						module._.count++;
+						$(".cont2").append("<div class='row-fluid count"+module._.count+"'></div>");
+					}
+					$(".cont2 .row-fluid.count"+module._.count).append('<div id="module_'+data.name+'" class="module module-'+data.type+' span'+data.width+' homepagecontainer">'+eval("("+data.render+")")()+'</div>');
+				}else {
+					module._.count = data.width;
+					module._.countn = 0;
+					$(".cont2").remove(".row-fluid:not(.count0)");
+					$(".cont2 .count0").empty();
+					$(".cont2 .row-fluid.count"+module._.count).html('<div id="module_'+data.name+'" class="module module-'+data.type+' span'+data.width+' homepagecontainer">'+eval("("+data.render+")")()+'</div>');
+				}
+				module.base = $("#module_"+data.name);
+			});
+		},
+		login: function(user,pass) {
+			if(module._.hash == "") {
+				$.getJSON("/login/"+module._.currentModule+".js?user="+user+"&pass="+md5(pass)).success(function(data) {
+					if(module._.hash != false) {
+						module._.hash = data;
+					}
+				});
+			}
+		}
+	}
+
+}
