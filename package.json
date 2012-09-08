@@ -2,6 +2,7 @@
 	"name":"Democratiescherm",
 	"version": "0.1.10",
 	"dependencies": {
-		"coffee-script": "1.3.x"
+		"coffee-script": "1.3.x",
+		"express": "3.x.x"
 	}
 }
