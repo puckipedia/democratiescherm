@@ -4,11 +4,13 @@ function clientCode() {
 		init:function() {
 		},
 		submit:function(module) {
-			module.login($("#login_name", module.base),module.md5_crypt($("#login_pass", module.base)));
+			module._.login($("#login_name", module.base),module.md5_crypt($("#login_pass", module.base)));
 		},
 		render:function(a) {
-			$(a).html("<input type='text' name='username' id='login_name'/>");
+			$(a).html('<input type="text" id="login_name" name="username"/><input type="password" id="login_pass" name="password"/>');
 		},
+		type: "client",
+		name: "login",
 		md5_crypt: function(a) {return md5(a);}
 		//client (global) is this object being returned
 	}

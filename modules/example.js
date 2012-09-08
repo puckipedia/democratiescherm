@@ -7,8 +7,11 @@ function clientCode() {
 			alert("click!"+$(a).attr("id"));
 		}.toString(),
 		render:function(a) {
-			$(a).html("hallo!<button id='hoi'>a</button><button id='hi'>b</button>");
-		}.toString()
+			alert('render');
+			return "hallo!<button id='hoi'>a</button><button id='hi'>b</button>";
+		}.toString(),
+		type: "widget",
+		name: "example_widget"
 		//client (global) is this object being returned
 	}
 }
