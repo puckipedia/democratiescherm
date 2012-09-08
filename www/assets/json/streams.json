@@ -1,0 +1,25 @@
+{"politiek24": {
+  "url": "http://livestreams.omroep.nl/nos/politiek24-bb",
+  "naam": "Politiek24"
+  },
+
+ "plenair": {
+   "url": "http://reflector.kpnstreaming.nl/?account=TweedeKamerL&file=Encoder01_Plenair_TK_Extern500k&type=live&service=windowsmedia&protocol=rtsp&port=&output=asx",
+   "naam": "Plenaire Zaal"
+ },
+
+ "thorbecke": {
+   "url": "http://reflector.kpnstreaming.nl/?user=TweedeKamerL&file=Encoder02_Thorbecke_Extern500k&type=live&service=windowsmedia&protocol=rtsp&port=&output=asx",
+   "naam": "Thorbecke Zaal"
+ },
+
+ "groen": {
+   "url": "http://reflector.kpnstreaming.nl/?user=TweedeKamerL&file=Encoder03_GroenvPrinsterer_Extern500k&type=live&service=windowsmedia&protocol=rtsp&port=&output=asx",
+   "naam": "Groen van Prinstererzaal"
+ },
+
+ "troelstra": {
+   "url": "http://reflector.kpnstreaming.nl/?user=TweedeKamerL&file=Encoder04_Troelstra_Extern500k&type=live&service=windowsmedia&protocol=rtsp&port=&output=asx",
+   "naam": "Troelstrazaal"
+ }
+}
