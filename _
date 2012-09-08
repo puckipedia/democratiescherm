@@ -1,0 +1,22 @@
+var module = {"_": {}};
+module = {
+	"_": {
+		currentModule: "",
+		"load": function(module) {
+			$.getJSON("/module/"+module).success(function(data) {
+				alert(data);
+				module._.currentModule = data.name;
+				if(data.type == "widget") {
+					$("#container").append('<div id="module_'+data.name+'" class="module module-'+data.type+'">'+eval("("+data.render+")")()+'</div>');
+				}else {
+					$("#container").html('<div id="module_'+data.name+'" class="module module-'+data.type+'">'+eval("("+data.render+")")()+'</div>');
+				}
+			});
+		},
+		login: function(user,pass) {
+			$.getJSON("/login/"+module+"?user="+user+"&pass="+md5(pass)).success(function(data) {
+			});
+		}
+	}
+
+}

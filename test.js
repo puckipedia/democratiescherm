@@ -1,0 +1,1 @@
+eval('(function() {console.log("test")})')()
