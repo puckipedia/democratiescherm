@@ -11,8 +11,10 @@ module = {
 				module._.currentModule = data.name;
 				eval('('+data.init+')')();
 				for(var i in data) {
-					if(typeof(data[i] === "string") && data[i].indexOf("function") == 0) {
-						module[i] = eval("("+data[i]+")");
+					if(typeof(data[i]) === "string")) {
+						if(data[i].indexOf("function") == 0) {
+							module[i] = eval("("+data[i]+")");
+						}
 					}else {
 						module[i] = data[i];
 					}
