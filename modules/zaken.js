@@ -1,19 +1,14 @@
-md5 = require('./../md5.js');
 function clientCode() {
 	return {
 		init:function() {
-			module._.load("agenda.js");
-			module._.load("stemmen.js");
-			module._.load("streams.js");
-			module._.load("zaken.js");
-			module._.load("archief.js");
 		},
 		render:function(a) {
-			return '<b>Success!</b>';
+			return '<h2>zaken</h2>				<ul class="nav nav-list">					<li><a href="">zaak</a>					</li>					<li><a href="">zaak</a>					</li>					<li><a href="">zaak</a>					</li>					<li><a href="">zaak</a>					</li>				</ul>			';
+
 		},
-		type: "client",
-		name: "success",
-		width:12,
+		type: "widget",
+		name: "zaken",
+		width:4,
 		//client (global) is this object being returned
 	}
 }
@@ -22,7 +17,7 @@ function serverCode() {
 		send: function() {
 			return clientCode();
 		},
-		type: "client"
+		type: "zaken"
 	}
 }
 exports.serverCode = serverCode();

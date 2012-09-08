@@ -18,6 +18,7 @@ log = (str=false) ->
 log false
 log "Democratiescherm"
 log ""
+log "Loading..."
 log false
 load = (mname) ->
 	log mname.replace ".js",""
@@ -29,16 +30,13 @@ log false
 server.get "/module/:module", (req,res) ->
 	a = modules[req.params.module].clientCode()
 	doo = (c,b) ->
-		log typeof b
 		if typeof b == "function"
 			a[c] = b.toString()
 	doo c,b for c,b of a
-	log false
 	res.write JSON.stringify a
 	res.end()
 server.get "/login/:module", (req,res) ->
-	console.log req.query
 	res.send JSON.stringify modules[req.params.module].serverCode.login(req.query.user, req.query.pass)
 	res.end
 server.use express.static "#{__dirname}/www"
-server.listen 8081
+server.listen 80
