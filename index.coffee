@@ -40,5 +40,5 @@ server.get "/login/:module", (req,res) ->
 	console.log req.query
 	res.send JSON.stringify modules[req.params.module].serverCode.login(req.query.user, req.query.pass)
 	res.end
-server.use express.static __dirname
+server.use express.static "#{__dirname}/www"
 server.listen 8081

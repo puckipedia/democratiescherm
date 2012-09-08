@@ -11,6 +11,7 @@ function clientCode() {
 		},
 		type: "client",
 		name: "login",
+		width:5,
 		md5_crypt: function(a) {return md5(a);}
 		//client (global) is this object being returned
 	}
