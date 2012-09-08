@@ -20,5 +20,5 @@ function serverCode() {
 		type: "client"
 	}
 }
-exports.serverCode = serverCode;
+exports.serverCode = serverCode();
 exports.clientCode = clientCode;

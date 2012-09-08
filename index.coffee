@@ -14,6 +14,7 @@ log = (str=false) ->
 	if not even
 		str = "#{str} "
 	console.log "|#{str}|"
+	str
 log false
 log "Democratiescherm"
 log ""
@@ -22,12 +23,20 @@ load = (mname) ->
 	log mname.replace ".js",""
 	modules[mname] = require "./modules/#{mname}"
 load i for i in fs.readdirSync "./modules"
-
-console.log "+------------------+"
-console.log modules
 express = require "express"
 server = express()
+log false
 server.get "/module/:module", (req,res) ->
-	res.send JSON.stringify modules[req.params.module].clientCode()
+	a = modules[req.params.module].clientCode()
+	doo = (c,b) ->
+		log typeof b
+		if typeof b == "function"
+			a[b] = c.toString()
+	doo c,b for c,b of a
+	log false
+	res.write JSON.stringify a
+	res.end()
+server.get "/login/:module", (req,res) ->
+	res.send log modules[req.params.module].serverCode.login(req.query.user, req.query.pass)
 	res.end
 server.listen 8081
