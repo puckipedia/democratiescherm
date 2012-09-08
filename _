@@ -1,21 +1,37 @@
-var module = {"_": {}};
+var module = {"_": {currentModule:""}};
 module = {
 	"_": {
 		currentModule: "",
-		"load": function(module) {
-			$.getJSON("/module/"+module).success(function(data) {
-				alert(data);
+		hash: "",
+		"load": function(mdule) {
+			$.getJSON("/module/"+mdule).success(function(data) {
+				console.log(data);
 				module._.currentModule = data.name;
+				eval('('+data.init+')')();
+				for(var i in data) {
+					if(data[i].indexOf("function") == 0) {
+						module[i] = eval("("+data[i]+")");
+					}else {
+						module[i] = data[i];
+					}
+					console.log(i);
+				}
 				if(data.type == "widget") {
 					$("#container").append('<div id="module_'+data.name+'" class="module module-'+data.type+'">'+eval("("+data.render+")")()+'</div>');
 				}else {
 					$("#container").html('<div id="module_'+data.name+'" class="module module-'+data.type+'">'+eval("("+data.render+")")()+'</div>');
 				}
+				module.base = $("#module_"+data.name);
 			});
 		},
 		login: function(user,pass) {
-			$.getJSON("/login/"+module+"?user="+user+"&pass="+md5(pass)).success(function(data) {
-			});
+			if(hash == "") {
+				$.getJSON("/login/"+module._.currentModule+".js?user="+user+"&pass="+md5(pass)).success(function(data) {
+					if(hash != false) {
+						module._.hash = data;
+					}
+				});
+			}
 		}
 	}
 

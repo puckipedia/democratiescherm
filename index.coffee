@@ -31,13 +31,14 @@ server.get "/module/:module", (req,res) ->
 	doo = (c,b) ->
 		log typeof b
 		if typeof b == "function"
-			a[b] = c.toString()
+			a[c] = b.toString()
 	doo c,b for c,b of a
 	log false
 	res.write JSON.stringify a
 	res.end()
 server.get "/login/:module", (req,res) ->
-	res.send log modules[req.params.module].serverCode.login(req.query.user, req.query.pass)
+	console.log req.query
+	res.send JSON.stringify modules[req.params.module].serverCode.login(req.query.user, req.query.pass)
 	res.end
 server.use express.static __dirname
 server.listen 8081

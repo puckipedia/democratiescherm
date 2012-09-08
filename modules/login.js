@@ -3,11 +3,11 @@ function clientCode() {
 	return {
 		init:function() {
 		},
-		submit:function(module) {
-			module._.login($("#login_name", module.base),module.md5_crypt($("#login_pass", module.base)));
+		submit:function() {
+			module._.login($("#login_name", module.base).val(),$("#login_pass", module.base).val());
 		},
 		render:function(a) {
-			$(a).html('<input type="text" id="login_name" name="username"/><input type="password" id="login_pass" name="password"/>');
+			return '<input type="text" id="login_name" name="username"/><input type="password" id="login_pass" name="password"/><button onclick="module.submit()">Login</button>';
 		},
 		type: "client",
 		name: "login",
@@ -21,6 +21,9 @@ function serverCode() {
 			return clientCode();
 		},
 		login: function(user,pass) {
+			console.log(md5.md5(user));
+			console.log("'"+user+"'");
+			console.log(pass);
 			if(pass === md5.md5(user)) {
 				return md5.md5(user+pass);
 			}
